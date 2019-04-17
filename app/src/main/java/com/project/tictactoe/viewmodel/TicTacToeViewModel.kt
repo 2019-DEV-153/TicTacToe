@@ -8,14 +8,17 @@ class TicTacToeViewModel : ViewModel() {
     val PLAYER_O = 2
     var playerTurn = PLAYER_X
     private var GAME_MOVE_COUNTER = 0
+    var isGameFinished: Boolean = false
 
     fun recordPlayerMove(position: Int, player: Int): Boolean {
-        when (position) {
-            position -> if (playBoard[position / 3][position % 3] == 0) {
-                playBoard[position / 3][position % 3] = player
-                GAME_MOVE_COUNTER = GAME_MOVE_COUNTER.plus(1)
-                changePlayerTurn(player)
-                return true
+        if (!isGameFinished && GAME_MOVE_COUNTER <= 9) {
+            when (position) {
+                position -> if (playBoard[position / 3][position % 3] == 0) {
+                    playBoard[position / 3][position % 3] = player
+                    GAME_MOVE_COUNTER = GAME_MOVE_COUNTER.plus(1)
+                    changePlayerTurn(player)
+                    return true
+                }
             }
         }
         return false
@@ -31,7 +34,9 @@ class TicTacToeViewModel : ViewModel() {
 
     fun identifyWinnerByRow(): Boolean {
         IntRange(0, 2).forEach { rowPosition ->
-            if (playBoard[rowPosition][0] > 0 && compareUserMove(Pair(rowPosition, 0), Pair(rowPosition, 1)) && compareUserMove(Pair(rowPosition, 0), Pair(rowPosition, 2))) {
+            if (playBoard[rowPosition][0] > 0 && compareUserMove(Pair(rowPosition, 0), Pair(rowPosition, 1)) &&
+                compareUserMove(Pair(rowPosition, 0), Pair(rowPosition, 2))) {
+                isGameFinished = true
                 return true
             }
         }
@@ -40,7 +45,9 @@ class TicTacToeViewModel : ViewModel() {
 
     fun identifyWinnerByColumn(): Boolean {
         IntRange(0, 2).forEach { columnPosition ->
-            if (playBoard[0][columnPosition] > 0 && compareUserMove(Pair(0, columnPosition), Pair(1, columnPosition)) && compareUserMove(Pair(0, columnPosition), Pair(2, columnPosition))) {
+            if (playBoard[0][columnPosition] > 0 && compareUserMove(Pair(0, columnPosition), Pair(1, columnPosition))
+                && compareUserMove(Pair(0, columnPosition), Pair(2, columnPosition))) {
+                isGameFinished = true
                 return true
             }
         }
@@ -49,8 +56,10 @@ class TicTacToeViewModel : ViewModel() {
 
     fun identifyWinnerByDiagonal(): Boolean {
         if (playBoard[0][0] > 0 && compareUserMove(Pair(0, 0), Pair(1, 1)) && compareUserMove(Pair(0, 0), Pair(2, 2))) {
-                return true
-        }else if (playBoard[0][2] > 0 && compareUserMove(Pair(0, 2), Pair(1, 1)) && compareUserMove(Pair(0, 2), Pair(2, 0))) {
+            return true
+        } else if (playBoard[0][2] > 0 && compareUserMove(Pair(0, 2), Pair(1, 1)) &&
+            compareUserMove(Pair(0, 2), Pair(2, 0))) {
+            isGameFinished = true
             return true
         }
         return false
