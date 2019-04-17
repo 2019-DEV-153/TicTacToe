@@ -26,4 +26,13 @@ class TicTacToeViewModel : ViewModel() {
             playerTurn = PLAYER_X
         }
     }
+
+    fun identifyWinnerByRow(): Boolean {
+        IntRange(0, 2).forEach { rowPosition ->
+            if (playBoard[rowPosition][0] > 0 && playBoard[rowPosition][0] == playBoard[rowPosition][1] && playBoard[rowPosition][0] == playBoard[rowPosition][2]) {
+                return true
+            }
+        }
+        return false
+    }
 }
