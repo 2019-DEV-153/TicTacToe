@@ -10,18 +10,20 @@ class TicTacToeViewModel : ViewModel() {
     private var GAME_MOVE_COUNTER = 0
     var isGameFinished: Boolean = false
 
-    fun recordPlayerMove(position: Int, player: Int): Boolean {
+    fun recordPlayerMove(position: Int, player: Int): Pair<Boolean, String> {
         if (!isGameFinished && GAME_MOVE_COUNTER <= 9) {
             when (position) {
                 position -> if (playBoard[position / 3][position % 3] == 0) {
                     playBoard[position / 3][position % 3] = player
                     GAME_MOVE_COUNTER = GAME_MOVE_COUNTER.plus(1)
                     changePlayerTurn(player)
-                    return true
+                    return Pair(true, "")
                 }
             }
+        } else {
+            return Pair(false, "Game finished. No more moves allowed.")
         }
-        return false
+        return Pair(false, "A player has already played this position")
     }
 
     private fun changePlayerTurn(player: Int) {

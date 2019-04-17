@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import com.project.tictactoe.R
 import com.project.tictactoe.viewmodel.TicTacToeViewModel
 import kotlinx.android.synthetic.main.activity_tictactoe.*
@@ -56,14 +57,18 @@ class TicTacToeActivity : AppCompatActivity(), View.OnClickListener {
         if (ticTacToeViewModel.playerTurn == ticTacToeViewModel.PLAYER_X) {
             val isValidMove =
                 ticTacToeViewModel.recordPlayerMove(view.tag.toString().toInt(), ticTacToeViewModel.PLAYER_X)
-            if (isValidMove) {
+            if (isValidMove.first) {
                 view.text = getString(R.string.player_x)
+            } else{
+                Toast.makeText(this, isValidMove.second, Toast.LENGTH_SHORT).show()
             }
         } else {
             val isValidMove =
                 ticTacToeViewModel.recordPlayerMove(view.tag.toString().toInt(), ticTacToeViewModel.PLAYER_O)
-            if (isValidMove) {
+            if (isValidMove.first) {
                 view.text = getString(R.string.player_o)
+            } else{
+                Toast.makeText(this, isValidMove.second, Toast.LENGTH_SHORT).show()
             }
         }
         identifyIfAnyPlayerHadWon()
