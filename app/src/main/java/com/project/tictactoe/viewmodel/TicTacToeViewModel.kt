@@ -12,9 +12,18 @@ class TicTacToeViewModel : ViewModel() {
         when (position) {
             position -> if (playBoard[position / 3][position % 3] == 0) {
                 playBoard[position / 3][position % 3] = player
+                changePlayerTurn(player)
                 return true
             }
         }
         return false
+    }
+
+    private fun changePlayerTurn(player: Int) {
+        if (player == PLAYER_X) {
+            playerTurn = PLAYER_O
+        } else {
+            playerTurn = PLAYER_X
+        }
     }
 }
