@@ -1,16 +1,22 @@
 package com.project.tictactoe.activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Button
 import com.project.tictactoe.R
+import com.project.tictactoe.viewmodel.TicTacToeViewModel
 import kotlinx.android.synthetic.main.activity_tictactoe.*
 
 class TicTacToeActivity : AppCompatActivity(), View.OnClickListener {
 
+    private lateinit var ticTacToeViewModel: TicTacToeViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tictactoe)
+
+        ticTacToeViewModel = TicTacToeViewModel()
 
         btn1.setOnClickListener(this)
         btn1.tag = 0
@@ -32,7 +38,33 @@ class TicTacToeActivity : AppCompatActivity(), View.OnClickListener {
         btn9.tag = 8
     }
 
-    override fun onClick(p0: View?) {
+    override fun onClick(view: View) {
+        when (view.id) {
+            R.id.btn1 -> checkAndRecordPlayerMove(btn1)
+            R.id.btn2 -> checkAndRecordPlayerMove(btn2)
+            R.id.btn3 -> checkAndRecordPlayerMove(btn3)
+            R.id.btn4 -> checkAndRecordPlayerMove(btn4)
+            R.id.btn5 -> checkAndRecordPlayerMove(btn5)
+            R.id.btn6 -> checkAndRecordPlayerMove(btn6)
+            R.id.btn7 -> checkAndRecordPlayerMove(btn7)
+            R.id.btn8 -> checkAndRecordPlayerMove(btn8)
+            R.id.btn9 -> checkAndRecordPlayerMove(btn9)
+        }
+    }
 
+    private fun checkAndRecordPlayerMove(view: Button) {
+        if (ticTacToeViewModel.playerTurn == ticTacToeViewModel.PLAYER_X) {
+            val isValidMove =
+                ticTacToeViewModel.recordPlayerMove(view.tag.toString().toInt(), ticTacToeViewModel.PLAYER_X)
+            if (isValidMove) {
+                view.text = getString(R.string.player_x)
+            }
+        } else {
+            val isValidMove =
+                ticTacToeViewModel.recordPlayerMove(view.tag.toString().toInt(), ticTacToeViewModel.PLAYER_O)
+            if (isValidMove) {
+                view.text = getString(R.string.player_o)
+            }
+        }
     }
 }
