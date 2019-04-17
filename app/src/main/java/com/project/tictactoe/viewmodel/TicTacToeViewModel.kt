@@ -56,6 +56,7 @@ class TicTacToeViewModel : ViewModel() {
 
     fun identifyWinnerByDiagonal(): Boolean {
         if (playBoard[0][0] > 0 && compareUserMove(Pair(0, 0), Pair(1, 1)) && compareUserMove(Pair(0, 0), Pair(2, 2))) {
+            isGameFinished = true
             return true
         } else if (playBoard[0][2] > 0 && compareUserMove(Pair(0, 2), Pair(1, 1)) &&
             compareUserMove(Pair(0, 2), Pair(2, 0))) {
