@@ -26,4 +26,10 @@ class TicTacToeViewModelUnitTest {
     fun testShouldReturnTrueIfPlayerMoveIsValid() {
         assertTrue(ticTacToeViewModel.recordPlayerMove(1, ticTacToeViewModel.PLAYER_X))
     }
+
+    @Test
+    fun testShouldReturnFalseIfSelectedPositionHasAlreadyBeenPlayed() {
+        assertTrue(ticTacToeViewModel.recordPlayerMove(1, ticTacToeViewModel.PLAYER_X))
+        assertFalse(ticTacToeViewModel.recordPlayerMove(1, ticTacToeViewModel.PLAYER_X))
+    }
 }

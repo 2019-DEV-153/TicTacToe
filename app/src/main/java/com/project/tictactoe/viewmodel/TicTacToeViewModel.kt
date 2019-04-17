@@ -10,8 +10,11 @@ class TicTacToeViewModel : ViewModel() {
 
     fun recordPlayerMove(position: Int, player: Int): Boolean {
         when (position) {
-            position -> playBoard[position / 3][position % 3] = player
+            position -> if (playBoard[position / 3][position % 3] == 0) {
+                playBoard[position / 3][position % 3] = player
+                return true
+            }
         }
-        return true
+        return false
     }
 }
