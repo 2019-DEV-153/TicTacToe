@@ -66,7 +66,12 @@ class TicTacToeViewModel : ViewModel() {
     }
 
     fun identifyIfMatchDrawn(): Boolean {
-        return GAME_MOVE_COUNTER == 9
+        if (GAME_MOVE_COUNTER == 9) {
+            isGameFinished = true
+            return true
+        } else {
+            return false
+        }
     }
 
     private fun compareUserMove(firstPosition: Pair<Int, Int>, secondPosition: Pair<Int, Int>): Boolean {
