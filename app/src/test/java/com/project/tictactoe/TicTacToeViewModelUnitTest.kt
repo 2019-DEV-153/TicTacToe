@@ -45,7 +45,7 @@ class TicTacToeViewModelUnitTest {
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(3, ticTacToeViewModel.PLAYER_X).first)
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(4, ticTacToeViewModel.PLAYER_X).first)
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(5, ticTacToeViewModel.PLAYER_X).first)
-        assertTrue(ticTacToeViewModel.identifyWinnerByRow())
+        assertTrue(ticTacToeViewModel.identifyWinnerByRow().first)
     }
 
     @Test
@@ -53,7 +53,7 @@ class TicTacToeViewModelUnitTest {
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(0, ticTacToeViewModel.PLAYER_X).first)
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(1, ticTacToeViewModel.PLAYER_O).first)
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(2, ticTacToeViewModel.PLAYER_X).first)
-        assertFalse(ticTacToeViewModel.identifyWinnerByRow())
+        assertFalse(ticTacToeViewModel.identifyWinnerByRow().first)
     }
 
     @Test
@@ -61,7 +61,7 @@ class TicTacToeViewModelUnitTest {
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(0, ticTacToeViewModel.PLAYER_X).first)
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(3, ticTacToeViewModel.PLAYER_X).first)
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(6, ticTacToeViewModel.PLAYER_X).first)
-        assertTrue(ticTacToeViewModel.identifyWinnerByColumn())
+        assertTrue(ticTacToeViewModel.identifyWinnerByColumn().first)
     }
 
     @Test
@@ -69,7 +69,7 @@ class TicTacToeViewModelUnitTest {
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(1, ticTacToeViewModel.PLAYER_X).first)
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(4, ticTacToeViewModel.PLAYER_O).first)
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(7, ticTacToeViewModel.PLAYER_X).first)
-        assertFalse(ticTacToeViewModel.identifyWinnerByColumn())
+        assertFalse(ticTacToeViewModel.identifyWinnerByColumn().first)
     }
 
     @Test
@@ -77,7 +77,7 @@ class TicTacToeViewModelUnitTest {
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(0, ticTacToeViewModel.PLAYER_O).first)
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(4, ticTacToeViewModel.PLAYER_O).first)
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(8, ticTacToeViewModel.PLAYER_O).first)
-        assertTrue(ticTacToeViewModel.identifyWinnerByDiagonal())
+        assertTrue(ticTacToeViewModel.identifyWinnerByDiagonal().first)
     }
 
     @Test
@@ -85,7 +85,7 @@ class TicTacToeViewModelUnitTest {
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(2, ticTacToeViewModel.PLAYER_X).first)
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(4, ticTacToeViewModel.PLAYER_O).first)
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(6, ticTacToeViewModel.PLAYER_X).first)
-        assertFalse(ticTacToeViewModel.identifyWinnerByDiagonal())
+        assertFalse(ticTacToeViewModel.identifyWinnerByDiagonal().first)
     }
 
     @Test
@@ -99,7 +99,7 @@ class TicTacToeViewModelUnitTest {
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(3, ticTacToeViewModel.PLAYER_X).first)
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(5, ticTacToeViewModel.PLAYER_X).first)
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(8, ticTacToeViewModel.PLAYER_X).first)
-        assertTrue(ticTacToeViewModel.identifyIfMatchDrawn())
+        assertTrue(ticTacToeViewModel.identifyIfMatchDrawn().first)
     }
 
     @Test
@@ -107,7 +107,7 @@ class TicTacToeViewModelUnitTest {
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(2, ticTacToeViewModel.PLAYER_X).first)
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(4, ticTacToeViewModel.PLAYER_X).first)
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(6, ticTacToeViewModel.PLAYER_X).first)
-        assertEquals(true, ticTacToeViewModel.identifyWinnerByDiagonal())
+        assertEquals(true, ticTacToeViewModel.identifyWinnerByDiagonal().first)
         assertFalse(ticTacToeViewModel.recordPlayerMove(8, ticTacToeViewModel.PLAYER_X).first)
     }
 }

@@ -34,50 +34,74 @@ class TicTacToeViewModel : ViewModel() {
         }
     }
 
-    fun identifyWinnerByRow(): Boolean {
+    fun identifyWinnerByRow(): Pair<Boolean, String> {
         IntRange(0, 2).forEach { rowPosition ->
             if (playBoard[rowPosition][0] > 0 && compareUserMove(Pair(rowPosition, 0), Pair(rowPosition, 1)) &&
                 compareUserMove(Pair(rowPosition, 0), Pair(rowPosition, 2))) {
                 isGameFinished = true
-                return true
+                if (checkIfMoveMadeByPlayerX(Pair(rowPosition, 0))) {
+                    return Pair(true, "Player X won by - row ${rowPosition + 1}")
+                } else if (checkIfMoveMadeByPlayerO(Pair(rowPosition, 0))) {
+                    return Pair(true, "Player O won by - row ${rowPosition + 1}")
+                }
             }
         }
-        return false
+        return Pair(false, "")
     }
 
-    fun identifyWinnerByColumn(): Boolean {
+    fun identifyWinnerByColumn(): Pair<Boolean, String> {
         IntRange(0, 2).forEach { columnPosition ->
             if (playBoard[0][columnPosition] > 0 && compareUserMove(Pair(0, columnPosition), Pair(1, columnPosition))
                 && compareUserMove(Pair(0, columnPosition), Pair(2, columnPosition))) {
                 isGameFinished = true
-                return true
+                if (checkIfMoveMadeByPlayerX(Pair(0, columnPosition))) {
+                    return Pair(true, "Player X won by - column ${columnPosition + 1}")
+                } else if (checkIfMoveMadeByPlayerO(Pair(0, columnPosition))) {
+                    return Pair(true, "Player O won by - column ${columnPosition + 1}")
+                }
             }
         }
-        return false
+        return Pair(false, "")
     }
 
-    fun identifyWinnerByDiagonal(): Boolean {
+    fun identifyWinnerByDiagonal(): Pair<Boolean, String> {
         if (playBoard[0][0] > 0 && compareUserMove(Pair(0, 0), Pair(1, 1)) && compareUserMove(Pair(0, 0), Pair(2, 2))) {
             isGameFinished = true
-            return true
+            if (checkIfMoveMadeByPlayerX(Pair(0, 0))) {
+                return Pair(true, "Player X won by - Left to Right diagonal")
+            } else if (checkIfMoveMadeByPlayerO(Pair(0, 0))) {
+                return Pair(true, "Player O won by - Left to Right diagonal")
+            }
         } else if (playBoard[0][2] > 0 && compareUserMove(Pair(0, 2), Pair(1, 1)) &&
             compareUserMove(Pair(0, 2), Pair(2, 0))) {
             isGameFinished = true
-            return true
+            if (checkIfMoveMadeByPlayerX(Pair(0, 2))) {
+                return Pair(true, "Player X won by - Right to Left diagonal")
+            } else if (checkIfMoveMadeByPlayerO(Pair(0, 2))) {
+                return Pair(true, "Player O won by - Right to Left diagonal")
+            }
         }
-        return false
+        return Pair(false, "")
     }
 
-    fun identifyIfMatchDrawn(): Boolean {
+    fun identifyIfMatchDrawn(): Pair<Boolean, String> {
         if (GAME_MOVE_COUNTER == 9) {
             isGameFinished = true
-            return true
+            return Pair(true, "Match drawn")
         } else {
-            return false
+            return Pair(false, "")
         }
     }
 
     private fun compareUserMove(firstPosition: Pair<Int, Int>, secondPosition: Pair<Int, Int>): Boolean {
         return playBoard[firstPosition.first][firstPosition.second] == playBoard[secondPosition.first][secondPosition.second]
+    }
+
+    private fun checkIfMoveMadeByPlayerX(movePosition: Pair<Int, Int>): Boolean {
+        return playBoard[movePosition.first][movePosition.second] == PLAYER_X
+    }
+
+    private fun checkIfMoveMadeByPlayerO(movePosition: Pair<Int, Int>): Boolean {
+        return playBoard[movePosition.first][movePosition.second] == PLAYER_O
     }
 }

@@ -80,14 +80,14 @@ class TicTacToeActivity : AppCompatActivity(), View.OnClickListener {
         val diagonalPair = ticTacToeViewModel.identifyWinnerByDiagonal()
         val drawnMatch = ticTacToeViewModel.identifyIfMatchDrawn()
 
-        if (horizontalPair) {
-            game_result.text = getString(R.string.message_match_won)
-        } else if (verticalPair) {
-            game_result.text = getString(R.string.message_match_won)
-        } else if (diagonalPair) {
-            game_result.text = getString(R.string.message_match_won)
-        } else if (drawnMatch) {
-            game_result.text = getString(R.string.message_match_drawn)
+        if (horizontalPair.first) {
+            game_result.text = horizontalPair.second
+        } else if (verticalPair.first) {
+            game_result.text = verticalPair.second
+        } else if (diagonalPair.first) {
+            game_result.text = diagonalPair.second
+        } else if (drawnMatch.first) {
+            game_result.text = drawnMatch.second
         }
     }
 }
