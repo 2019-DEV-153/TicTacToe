@@ -87,4 +87,18 @@ class TicTacToeViewModelUnitTest {
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(6, ticTacToeViewModel.PLAYER_X))
         assertFalse(ticTacToeViewModel.identifyWinnerByDiagonal())
     }
+
+    @Test
+    fun testShouldReturnTrueIfGameIsFinishedByExhaustingAllMoves() {
+        assertEquals(true, ticTacToeViewModel.recordPlayerMove(4, ticTacToeViewModel.PLAYER_X))
+        assertEquals(true, ticTacToeViewModel.recordPlayerMove(0, ticTacToeViewModel.PLAYER_X))
+        assertEquals(true, ticTacToeViewModel.recordPlayerMove(1, ticTacToeViewModel.PLAYER_X))
+        assertEquals(true, ticTacToeViewModel.recordPlayerMove(7, ticTacToeViewModel.PLAYER_X))
+        assertEquals(true, ticTacToeViewModel.recordPlayerMove(6, ticTacToeViewModel.PLAYER_X))
+        assertEquals(true, ticTacToeViewModel.recordPlayerMove(2, ticTacToeViewModel.PLAYER_X))
+        assertEquals(true, ticTacToeViewModel.recordPlayerMove(3, ticTacToeViewModel.PLAYER_X))
+        assertEquals(true, ticTacToeViewModel.recordPlayerMove(5, ticTacToeViewModel.PLAYER_X))
+        assertEquals(true, ticTacToeViewModel.recordPlayerMove(8, ticTacToeViewModel.PLAYER_X))
+        assertTrue(ticTacToeViewModel.identifyIfMatchDrawn())
+    }
 }

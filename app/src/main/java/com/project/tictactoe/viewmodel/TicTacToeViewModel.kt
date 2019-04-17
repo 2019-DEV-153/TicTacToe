@@ -7,11 +7,13 @@ class TicTacToeViewModel : ViewModel() {
     val PLAYER_X = 1
     val PLAYER_O = 2
     var playerTurn = PLAYER_X
+    private var GAME_MOVE_COUNTER = 0
 
     fun recordPlayerMove(position: Int, player: Int): Boolean {
         when (position) {
             position -> if (playBoard[position / 3][position % 3] == 0) {
                 playBoard[position / 3][position % 3] = player
+                GAME_MOVE_COUNTER = GAME_MOVE_COUNTER.plus(1)
                 changePlayerTurn(player)
                 return true
             }
@@ -52,5 +54,9 @@ class TicTacToeViewModel : ViewModel() {
             return true
         }
         return false
+    }
+
+    fun identifyIfMatchDrawn(): Boolean {
+        return GAME_MOVE_COUNTER == 9
     }
 }
