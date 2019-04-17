@@ -21,4 +21,9 @@ class TicTacToeViewModelUnitTest {
     fun testShouldReturnTrueIfFirstMoveIsByX() {
         assertTrue(ticTacToeViewModel.playerTurn == ticTacToeViewModel.PLAYER_X)
     }
+
+    @Test
+    fun testShouldReturnTrueIfPlayerMoveIsValid() {
+        assertTrue(ticTacToeViewModel.recordPlayerMove(1, ticTacToeViewModel.PLAYER_X))
+    }
 }
