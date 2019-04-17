@@ -16,4 +16,9 @@ class TicTacToeViewModelUnitTest {
             }
         }
     }
+
+    @Test
+    fun testShouldReturnTrueIfFirstMoveIsByX() {
+        assertTrue(ticTacToeViewModel.playerTurn == ticTacToeViewModel.PLAYER_X)
+    }
 }
