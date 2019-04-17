@@ -31,7 +31,7 @@ class TicTacToeViewModel : ViewModel() {
 
     fun identifyWinnerByRow(): Boolean {
         IntRange(0, 2).forEach { rowPosition ->
-            if (playBoard[rowPosition][0] > 0 && playBoard[rowPosition][0] == playBoard[rowPosition][1] && playBoard[rowPosition][0] == playBoard[rowPosition][2]) {
+            if (playBoard[rowPosition][0] > 0 && compareUserMove(Pair(rowPosition, 0), Pair(rowPosition, 1)) && compareUserMove(Pair(rowPosition, 0), Pair(rowPosition, 2))) {
                 return true
             }
         }
@@ -40,7 +40,7 @@ class TicTacToeViewModel : ViewModel() {
 
     fun identifyWinnerByColumn(): Boolean {
         IntRange(0, 2).forEach { columnPosition ->
-            if (playBoard[0][columnPosition] > 0 && playBoard[0][columnPosition] == playBoard[1][columnPosition] && playBoard[0][columnPosition] == playBoard[2][columnPosition]) {
+            if (playBoard[0][columnPosition] > 0 && compareUserMove(Pair(0, columnPosition), Pair(1, columnPosition)) && compareUserMove(Pair(0, columnPosition), Pair(2, columnPosition))) {
                 return true
             }
         }
@@ -48,9 +48,9 @@ class TicTacToeViewModel : ViewModel() {
     }
 
     fun identifyWinnerByDiagonal(): Boolean {
-        if (playBoard[0][0] > 0 && playBoard[0][0] == playBoard[1][1] && playBoard[0][0] == playBoard[2][2]) {
+        if (playBoard[0][0] > 0 && compareUserMove(Pair(0, 0), Pair(1, 1)) && compareUserMove(Pair(0, 0), Pair(2, 2))) {
                 return true
-        }else if (playBoard[0][2] > 0 && playBoard[0][2] == playBoard[1][1] && playBoard[0][2] == playBoard[2][0]) {
+        }else if (playBoard[0][2] > 0 && compareUserMove(Pair(0, 2), Pair(1, 1)) && compareUserMove(Pair(0, 2), Pair(2, 0))) {
             return true
         }
         return false
@@ -58,5 +58,9 @@ class TicTacToeViewModel : ViewModel() {
 
     fun identifyIfMatchDrawn(): Boolean {
         return GAME_MOVE_COUNTER == 9
+    }
+
+    private fun compareUserMove(firstPosition: Pair<Int, Int>, secondPosition: Pair<Int, Int>): Boolean {
+        return playBoard[firstPosition.first][firstPosition.second] == playBoard[secondPosition.first][secondPosition.second]
     }
 }
