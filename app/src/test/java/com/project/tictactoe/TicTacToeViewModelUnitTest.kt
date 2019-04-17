@@ -55,4 +55,12 @@ class TicTacToeViewModelUnitTest {
         assertEquals(true, ticTacToeViewModel.recordPlayerMove(2, ticTacToeViewModel.PLAYER_X))
         assertFalse(ticTacToeViewModel.identifyWinnerByRow())
     }
+
+    @Test
+    fun testShouldReturnTrueIfAnyPlayerHaveWonByColumn() {
+        assertEquals(true, ticTacToeViewModel.recordPlayerMove(0, ticTacToeViewModel.PLAYER_X))
+        assertEquals(true, ticTacToeViewModel.recordPlayerMove(3, ticTacToeViewModel.PLAYER_X))
+        assertEquals(true, ticTacToeViewModel.recordPlayerMove(6, ticTacToeViewModel.PLAYER_X))
+        assertTrue(ticTacToeViewModel.identifyWinnerByColumn())
+    }
 }

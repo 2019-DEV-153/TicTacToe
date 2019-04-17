@@ -35,4 +35,13 @@ class TicTacToeViewModel : ViewModel() {
         }
         return false
     }
+
+    fun identifyWinnerByColumn(): Boolean {
+        IntRange(0, 2).forEach { columnPosition ->
+            if (playBoard[0][columnPosition] > 0 && playBoard[0][columnPosition] == playBoard[1][columnPosition] && playBoard[0][columnPosition] == playBoard[2][columnPosition]) {
+                return true
+            }
+        }
+        return false
+    }
 }
