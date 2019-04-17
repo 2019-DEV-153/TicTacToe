@@ -44,4 +44,13 @@ class TicTacToeViewModel : ViewModel() {
         }
         return false
     }
+
+    fun identifyWinnerByDiagonal(): Boolean {
+        if (playBoard[0][0] > 0 && playBoard[0][0] == playBoard[1][1] && playBoard[0][0] == playBoard[2][2]) {
+                return true
+        }else if (playBoard[0][2] > 0 && playBoard[0][2] == playBoard[1][1] && playBoard[0][2] == playBoard[2][0]) {
+            return true
+        }
+        return false
+    }
 }
