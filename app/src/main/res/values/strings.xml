@@ -2,4 +2,6 @@
     <string name="app_name">Tic Tac Toe</string>
     <string name="player_x">X</string>
     <string name="player_o">O</string>
+    <string name="message_match_won">Match Won</string>
+    <string name="message_match_drawn">Match Drawn</string>
 </resources>

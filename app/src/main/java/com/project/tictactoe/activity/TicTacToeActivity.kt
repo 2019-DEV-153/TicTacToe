@@ -66,5 +66,23 @@ class TicTacToeActivity : AppCompatActivity(), View.OnClickListener {
                 view.text = getString(R.string.player_o)
             }
         }
+        identifyIfAnyPlayerHadWon()
+    }
+
+    private fun identifyIfAnyPlayerHadWon() {
+        val horizontalPair = ticTacToeViewModel.identifyWinnerByColumn()
+        val verticalPair = ticTacToeViewModel.identifyWinnerByRow()
+        val diagonalPair = ticTacToeViewModel.identifyWinnerByDiagonal()
+        val drawnMatch = ticTacToeViewModel.identifyIfMatchDrawn()
+
+        if (horizontalPair) {
+            game_result.text = getString(R.string.message_match_won)
+        } else if (verticalPair) {
+            game_result.text = getString(R.string.message_match_won)
+        } else if (diagonalPair) {
+            game_result.text = getString(R.string.message_match_won)
+        } else if (drawnMatch) {
+            game_result.text = getString(R.string.message_match_drawn)
+        }
     }
 }
